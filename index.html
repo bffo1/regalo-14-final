@@ -10,10 +10,13 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #ff9a9e, #fad0c4);
+  font-family: 'Arial', sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.4), transparent 40%),
+    linear-gradient(180deg, #ff758c, #ff7eb3);
+  background-attachment: fixed;
   overflow-x: hidden;
-  animation: fadeIn 1.5s ease;
+  animation: fadeIn 1.6s ease;
 }
 
 @keyframes fadeIn {
@@ -28,11 +31,11 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.88);
-  border-radius: 22px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 26px;
   padding: 30px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  animation: slideUp 1.3s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  animation: slideUp 1.4s ease;
 }
 
 @keyframes slideUp {
@@ -145,9 +148,10 @@ function createRibbon() {
   setTimeout(() => ribbon.remove(), 7000);
 }
 
-setInterval(createRibbon, 400);
+setInterval(createRibbon, 250);
 </script>
 
 </body>
 </html>
+
 
