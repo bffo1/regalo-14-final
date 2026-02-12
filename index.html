@@ -206,6 +206,15 @@ function checkPassword(){
   if(input===PASSWORD){
     document.getElementById("passwordScreen").classList.add("hidden");
     document.getElementById("mainContent").classList.remove("hidden");
+
+    // 🔥 Audio automático al abrir la carta
+    audio.pause();
+    audio.currentTime = 0;
+    audio.volume = 1;
+    audio.play().catch((e)=>{
+      console.log("El navegador bloqueó el audio, tocá la página para habilitarlo.", e);
+    });
+
     startEffects();
     setTimeout(()=>document.getElementById("surprise").style.display="block",20000);
   }else{
@@ -214,13 +223,12 @@ function checkPassword(){
 }
 
 function playMusic(){
-  audio.volume=0;
-  audio.play();
-  let fade=setInterval(()=>{
-    if(audio.volume<0.6){
-      audio.volume+=0.05;
-    }else{clearInterval(fade);}
-  },200);
+  audio.pause();
+  audio.currentTime = 0;
+  audio.volume = 1;
+  audio.play().catch((e)=>{
+    console.log("El navegador bloqueó el audio, tocá la página para habilitarlo.", e);
+  });
 }
 
 function startEffects(){
@@ -260,6 +268,3 @@ document.addEventListener("click",e=>{
   setTimeout(()=>heart.remove(),2000);
 });
 </script>
-
-</body>
-</html>
