@@ -15,14 +15,12 @@ body{
   transition:1s;
 }
 
-/* 🌙 Modo noche automático */
 @media (prefers-color-scheme: dark){
   body{
     background: radial-gradient(circle at top, #240046, #3c096c, #10002b);
   }
 }
 
-/* PANTALLAS */
 .screen{
   position:fixed;
   width:100%;
@@ -35,7 +33,6 @@ body{
   z-index:10;
 }
 
-/* SOBRE */
 .envelope{
   font-size:80px;
   cursor:pointer;
@@ -47,7 +44,6 @@ body{
   50%{transform:translateY(-15px);}
 }
 
-/* PASSWORD */
 input{
   padding:12px 20px;
   border-radius:30px;
@@ -67,7 +63,6 @@ button{
   font-size:15px;
 }
 
-/* CARD */
 .card{
   max-width:750px;
   margin:60px auto;
@@ -99,10 +94,8 @@ h1{
 }
 
 p{margin-bottom:15px;color:#4a003f;line-height:1.6;}
-
 .signature{margin-top:20px;font-weight:bold;}
 
-/* Animaciones fondo */
 .fall,.petal{
   position:fixed;
   top:-10%;
@@ -121,7 +114,6 @@ p{margin-bottom:15px;color:#4a003f;line-height:1.6;}
   to{transform:translateY(120vh) translateX(60px) rotate(180deg);}
 }
 
-/* MENSAJE SORPRESA */
 .surprise{
   position:fixed;
   bottom:20px;
@@ -142,37 +134,49 @@ p{margin-bottom:15px;color:#4a003f;line-height:1.6;}
 }
 
 .hidden{display:none;}
+
+.couple{
+  width:160px;
+  border-radius:20px;
+  display:block;
+  margin:0 auto 20px auto;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+#contador{
+  text-align:center;
+  font-weight:bold;
+  margin-bottom:20px;
+  color:#8a00c4;
+}
 </style>
 </head>
 
 <body>
 
-<!-- 💌 SOBRE -->
 <div id="envelopeScreen" class="screen">
   <div class="envelope" onclick="openEnvelope()">💌</div>
   <p>Toca el sobre mi amor</p>
 </div>
 
-<!-- 🔐 PASSWORD -->
 <div id="passwordScreen" class="screen hidden">
-  <h2>Ingresa nuestra fecha especial 💖</h2>
+  <h2>Ingresa el dia que nos conocimos💖</h2>
   <input type="password" id="passwordInput" placeholder="Ej: 140224">
   <button onclick="checkPassword()">Entrar</button>
+  <p style="font-size:13px;margin-top:10px;">
+  Pista: el día màs bonito de mi vida ;3 💕
+  </p>
 </div>
 
-<!-- 💜 CONTENIDO -->
 <div id="mainContent" class="hidden">
-
 <div class="card">
+
+<img src="https://via.placeholder.com/160x160.png?text=Nosotros+💜" class="couple">
+
 <h1>Feliz 14 mi niña 💜</h1>
 
-<p>
-ola mi niña solo quería que supieras lo mucho que te amo mi vida y que eres alguien muy especial en mi vida, alguien en el que pienso desde que me levanto, hasta que me acuesto. Realmente no se que me hiciste mi amor pero me gusta, me gusta pensar en ti, en pensar que haces o pensar en lo mucho que te amo, no sabia que necesitaba de ti hasta que llegaste mi niña, creo que me estoy yendo de tema pero esta quería que fuese algo distinta, quizás más yo? o no se mi amor, pero lo que si se amor es que te amo mucho y que ojala pasemos un lindo 14 mi monita, el primero de muchos que vamos a pasar juntos y ojalá el próximo lo podamos pasar estando juntos haciendo muchas cosas juntos, siendo solo tu y yo, siendo felices que creo que es lo que más queremos ambos mi vida. Te amo mucho mi monita, mi cachetoncita anhelo que llegue diciembre solo para poder verte, y ver los ojos del amor de mi vida, los ojos que que quiero ver al levantarme todas las mañana.
-Pero realmente quiero que estos meses pasen lento y a la vez no mi amor, solo por el hecho de que quiero vivir cada momento junto a ti y que cada momento sea único y recordarlo siempre mi niña :3. Te amo mucho mi niña hermosa, mi cachetona, mi monita. Mi enojona la uníca enojona que quiero tener siempre en mi vida.
-
-
-Feliz 14 mi bebé, el primero de muchos que vamos a pasar, y a pesar de la distancia mi vida va a ser un gran día tenlo x seguro espero te guste esta carta, intente que fuera un poco diferente. Algún día podré darte cartas echas a mano, y no creo que falte mucho para eso, pero bueño mi vida te amo mucho.
-</p>
+<p id="contador"></p>
+<p id="letterText"></p>
 
 <p class="signature">
 Firma?<br>
@@ -181,11 +185,10 @@ Tu niño &lt;3
 
 <button onclick="playMusic()">💗 Escuchar nuestra canción</button>
 </div>
-
 </div>
 
 <div class="surprise" id="surprise">
-💍 seguro que el próximo 14 será juntos  mi monita ;3 💖
+💍 Seguro que el próximo 14 será juntos mi monita ;3 💖
 </div>
 
 <audio id="music" loop>
@@ -193,8 +196,35 @@ Tu niño &lt;3
 </audio>
 
 <script>
-const PASSWORD = "281125"; // CAMBIALO
+const PASSWORD = "281125";
 const audio = document.getElementById("music");
+
+const fullText = `ola mi niña
+
+Solo quería que supieras lo mucho que te amo mi vida y que eres alguien muy especial en mi vida. 
+Eres alguien en quien pienso desde que me levanto hasta que me acuesto. 
+No sé qué me hiciste mi amor, pero me gusta, me gusta pensar en ti, imaginar qué haces, o pensar en lo mucho que te amo.
+
+No sabía que necesitaba de ti hasta que llegaste a mi vida. 
+Creo que me estoy yendo de tema.
+Pero queria que esta carta fuese quizas un poco mas yo? no se mi vida
+
+Ojalá pasemos un lindo 14 mi monita, el primero de muchos que vamos a compartir juntos. 
+Y aunque ahora haya distancia, sé que este día será especial porque te tengo a ti.
+
+Anhelo que llegue diciembre para poder verte, para mirar los ojos del amor de mi vida... los ojos que quiero ver todas las mañanas al despertar.
+
+Pero también quiero que estos meses pasen lento, para vivir cada momento contigo, disfrutar cada llamada, cada risa, cada palabra bonita y guardarlo todo como recuerdo bonito ;3.
+
+Te amo mucho mi niña hermosa, mi cachetona, mi monita, mi enojona... la única enojona que quiero tener siempre en mi vida.
+
+Feliz 14 mi bebé 💜
+el primero de muchos que vamos a pasar, y a pesar de la distancia mi vida
+va a ser un gran día tenlo x seguro espero te guste esta carta, intente que fuera un poco diferente
+Algún día podré darte cartas echas a mano, y no creo que falte mucho para eso, pero bueño mi vida te amo.
+
+Firma?
+Tu niño <3`;
 
 function openEnvelope(){
   document.getElementById("envelopeScreen").classList.add("hidden");
@@ -207,28 +237,46 @@ function checkPassword(){
     document.getElementById("passwordScreen").classList.add("hidden");
     document.getElementById("mainContent").classList.remove("hidden");
 
-    // 🔥 Audio automático al abrir la carta
-    audio.pause();
-    audio.currentTime = 0;
-    audio.volume = 1;
-    audio.play().catch((e)=>{
-      console.log("El navegador bloqueó el audio, tocá la página para habilitarlo.", e);
-    });
-
+    audio.play().catch(()=>{});
     startEffects();
+    startTyping();
+    startCounter();
+
     setTimeout(()=>document.getElementById("surprise").style.display="block",20000);
   }else{
     alert("Esa no es la fecha mi niña :c");
   }
 }
 
+function startTyping(){
+  const element = document.getElementById("letterText");
+  let i = 0;
+  const speed = 30;
+
+  function type(){
+    if(i < fullText.length){
+      element.innerHTML += fullText.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+function startCounter(){
+  const startDate = new Date("2025-11-28");
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+
+  document.getElementById("contador").innerText =
+    "Llevamos " + days + " días y " + hours + " horas juntos 💜";
+}
+
 function playMusic(){
-  audio.pause();
-  audio.currentTime = 0;
-  audio.volume = 1;
-  audio.play().catch((e)=>{
-    console.log("El navegador bloqueó el audio, tocá la página para habilitarlo.", e);
-  });
+  audio.play().catch(()=>{});
 }
 
 function startEffects(){
@@ -255,7 +303,6 @@ function startEffects(){
   },800);
 }
 
-/* Corazones al click */
 document.addEventListener("click",e=>{
   const heart=document.createElement("div");
   heart.innerText="💖";
@@ -268,3 +315,6 @@ document.addEventListener("click",e=>{
   setTimeout(()=>heart.remove(),2000);
 });
 </script>
+
+</body>
+</html>
