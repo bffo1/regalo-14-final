@@ -6,101 +6,168 @@
 <title>Feliz 14 mi niña 💜</title>
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background: linear-gradient(135deg, #6a00ff, #b5179e);
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top, #ff4da6, #7b2ff7 60%, #3a0ca3);
+  overflow:hidden;
+  transition:1s;
 }
 
-/* Animación de entrada */
-body {
-  animation: fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-  max-width: 750px;
-  margin: 60px auto;
-  background: rgba(255,255,255,0.94);
-  border-radius: 24px;
-  padding: 35px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-}
-
-h1 {
-  text-align: center;
-  color: #9d00ff;
-  margin-bottom: 25px;
-}
-
-p {
-  color: #3b003f;
-  line-height: 1.7;
-  margin-bottom: 18px;
-  font-size: 16px;
-}
-
-.signature {
-  margin-top: 30px;
-  font-weight: bold;
-}
-
-/* Botón música */
-.music-btn {
-  display: block;
-  margin: 30px auto 0;
-  background: linear-gradient(135deg, #ff4d6d, #c9184a);
-  color: white;
-  border: none;
-  padding: 14px 26px;
-  font-size: 16px;
-  border-radius: 40px;
-  cursor: pointer;
-}
-
-/* Corazones */
-.heart {
-  position: fixed;
-  top: -10%;
-  font-size: 22px;
-  animation: fall linear infinite;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(120vh) rotate(360deg);
+/* 🌙 Modo noche automático */
+@media (prefers-color-scheme: dark){
+  body{
+    background: radial-gradient(circle at top, #240046, #3c096c, #10002b);
   }
 }
+
+/* PANTALLAS */
+.screen{
+  position:fixed;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:inherit;
+  z-index:10;
+}
+
+/* SOBRE */
+.envelope{
+  font-size:80px;
+  cursor:pointer;
+  animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* PASSWORD */
+input{
+  padding:12px 20px;
+  border-radius:30px;
+  border:none;
+  margin-top:15px;
+  text-align:center;
+}
+
+button{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  font-size:15px;
+}
+
+/* CARD */
+.card{
+  max-width:750px;
+  margin:60px auto;
+  background:rgba(255,182,193,0.8);
+  backdrop-filter:blur(20px);
+  border-radius:25px;
+  padding:40px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  position:relative;
+  z-index:2;
+  animation:fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+  text-align:center;
+  color:#8a00c4;
+  margin-bottom:20px;
+  animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+}
+
+p{margin-bottom:15px;color:#4a003f;line-height:1.6;}
+
+.signature{margin-top:20px;font-weight:bold;}
+
+/* Animaciones fondo */
+.fall,.petal{
+  position:fixed;
+  top:-10%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.fall{animation:fall linear infinite;}
+.petal{animation:petal linear infinite;}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg);}
+}
+
+@keyframes petal{
+  to{transform:translateY(120vh) translateX(60px) rotate(180deg);}
+}
+
+/* MENSAJE SORPRESA */
+.surprise{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#ff4d6d;
+  color:white;
+  padding:15px 30px;
+  border-radius:40px;
+  display:none;
+  z-index:5;
+  animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.hidden{display:none;}
 </style>
 </head>
 
 <body>
 
+<!-- 💌 SOBRE -->
+<div id="envelopeScreen" class="screen">
+  <div class="envelope" onclick="openEnvelope()">💌</div>
+  <p>Toca el sobre mi amor</p>
+</div>
+
+<!-- 🔐 PASSWORD -->
+<div id="passwordScreen" class="screen hidden">
+  <h2>Ingresa nuestra fecha especial 💖</h2>
+  <input type="password" id="passwordInput" placeholder="Ej: 140224">
+  <button onclick="checkPassword()">Entrar</button>
+</div>
+
+<!-- 💜 CONTENIDO -->
+<div id="mainContent" class="hidden">
+
 <div class="card">
 <h1>Feliz 14 mi niña 💜</h1>
 
 <p>
-ola mi niña solo quería que supieras lo mucho que te amo mi vida y que eres alguien muy especial en mi vida, alguien en el que pienso desde que me levanto, hasta que me acuesto. Realmente no se que me hiciste mi amor pero me gusta, me gusta pensar en ti, en pensar que haces o pensar en lo mucho que te amo, no sabia que necesitaba de ti hasta que llegaste mi niña, creo que me estoy yendo de tema pero esta quería que fuese algo distinta, quizás más yo? o no se mi amor, pero lo que si se amor es que te amo mucho y que ojala pasemos un lindo 14 mi monita, el primero de muchos que vamos a pasar juntos y ojalá el próximo lo podamos pasar estando juntos haciendo muchas cosas juntos, siendo solo tu y yo, siendo felices que creo que es lo que más queremos ambos mi vida.
-</p>
-
-<p>
-Te amo mucho mi monita, mi cachetoncita anhelo que llegue diciembre solo para poder verte, y ver los ojos del amor de mi vida, los ojos que quiero ver al levantarme todas las mañanas.
-</p>
-
-<p>
-Pero realmente quiero que estos meses pasen lento y a la vez no mi amor, solo por el hecho de que quiero vivir cada momento junto a ti y que cada momento sea único y recordarlo siempre mi niña :3. Te amo mucho mi niña hermosa, mi cachetona, mi monita. Mi enojona la única enojona que quiero tener siempre en mi vida.
-</p>
-
-<p>
-Feliz 14 mi bebé, el primero de muchos que vamos a pasar, y a pesar de la distancia mi vida va a ser un gran día tenlo x seguro espero te guste esta carta, intenté que fuera un poco diferente. Algún día podré darte cartas hechas a mano, y no creo que falte mucho para eso, pero bueno mi vida te amo mucho.
+Tu texto completo hermoso va aquí (pegá todo tu texto original).
 </p>
 
 <p class="signature">
@@ -108,30 +175,86 @@ Firma?<br>
 Tu niño &lt;3
 </p>
 
-<button class="music-btn" onclick="playMusic()">💗 Tocar para escuchar la canción</button>
+<button onclick="playMusic()">💗 Escuchar nuestra canción</button>
 </div>
 
-<audio id="music" preload="auto">
+</div>
+
+<div class="surprise" id="surprise">
+💍 Prometo que el próximo 14 será juntos 💖
+</div>
+
+<audio id="music" loop>
   <source src="sweet.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function playMusic() {
-  const audio = document.getElementById("music");
-  audio.play();
+const PASSWORD = "140224"; // CAMBIALO
+const audio = document.getElementById("music");
+
+function openEnvelope(){
+  document.getElementById("envelopeScreen").classList.add("hidden");
+  document.getElementById("passwordScreen").classList.remove("hidden");
 }
 
-/* Corazones */
-const icons = ["💜","💖","🎀","💗"];
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = icons[Math.floor(Math.random()*icons.length)];
-  h.style.left = Math.random()*100 + "vw";
-  h.style.animationDuration = (4 + Math.random()*4) + "s";
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 9000);
-}, 350);
+function checkPassword(){
+  const input=document.getElementById("passwordInput").value;
+  if(input===PASSWORD){
+    document.getElementById("passwordScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");
+    startEffects();
+    setTimeout(()=>document.getElementById("surprise").style.display="block",20000);
+  }else{
+    alert("Esa no es mi fecha favorita 🥺");
+  }
+}
+
+function playMusic(){
+  audio.volume=0;
+  audio.play();
+  let fade=setInterval(()=>{
+    if(audio.volume<0.6){
+      audio.volume+=0.05;
+    }else{clearInterval(fade);}
+  },200);
+}
+
+function startEffects(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="fall";
+    h.innerText=["💜","💖","💗"][Math.floor(Math.random()*3)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize="22px";
+    h.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  },300);
+
+  setInterval(()=>{
+    const p=document.createElement("div");
+    p.className="petal";
+    p.innerText="🌸";
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize="20px";
+    p.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),10000);
+  },800);
+}
+
+/* Corazones al click */
+document.addEventListener("click",e=>{
+  const heart=document.createElement("div");
+  heart.innerText="💖";
+  heart.style.position="fixed";
+  heart.style.left=e.clientX+"px";
+  heart.style.top=e.clientY+"px";
+  heart.style.fontSize="20px";
+  heart.style.animation="fall 2s linear forwards";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),2000);
+});
 </script>
 
 </body>
