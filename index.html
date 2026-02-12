@@ -275,9 +275,12 @@ function startCounter(){
 }
 
 function playMusic(){
-  audio.play().catch(()=>{});
+  audio.volume = 1;
+  audio.play().catch((e)=>{
+    console.log("Audio bloqueado:", e);
+  });
 }
-
+  
 function startEffects(){
   setInterval(()=>{
     const h=document.createElement("div");
@@ -312,11 +315,18 @@ document.addEventListener("click",e=>{
   heart.style.animation="fall 2s linear forwards";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),2000);
+
+// 🔊 Activar música en el primer toque real del usuario
+document.addEventListener("click", function enableAudioOnce() {
+  audio.volume = 1;
+  audio.play().catch(()=>{});
+  document.removeEventListener("click", enableAudioOnce);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
