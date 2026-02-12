@@ -1,109 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz 14 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz 14 mi niña</title>
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(255,255,255,0.4), transparent 40%),
-    linear-gradient(180deg, #ff758c, #ff7eb3);
-  background-attachment: fixed;
-  overflow-x: hidden;
-  animation: fadeIn 1.6s ease;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle at top, #ffb3c6, #ff5d8f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      overflow-x: hidden;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    body.loaded {
+      opacity: 1;
+    }
 
-.container {
-  max-width: 720px;
-  margin: auto;
-  padding: 40px 20px 140px;
-}
+    .card {
+      background: #fff5f8;
+      max-width: 500px;
+      width: 90%;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
 
-.card {
-  background: rgba(255,255,255,0.92);
-  border-radius: 26px;
-  padding: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  animation: slideUp 1.4s ease;
-}
+    h1 {
+      text-align: center;
+      color: #d1005d;
+      margin-bottom: 20px;
+    }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    p {
+      color: #7a003c;
+      line-height: 1.6;
+      font-size: 15px;
+      white-space: pre-line;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 34px;
-  margin-bottom: 25px;
-  color: #b30059;
-  animation: popIn 1.4s ease;
-}
+    .firma {
+      margin-top: 20px;
+      font-weight: bold;
+    }
 
-@keyframes popIn {
-  0% { transform: scale(0.85); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
+    .music-btn {
+      margin: 25px auto 0;
+      display: block;
+      background: #ff4d88;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+    }
 
-p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: #4a0033;
-  white-space: pre-line;
-}
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
 
-.play-btn {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff4d88;
-  color: #fff;
-  border: none;
-  padding: 16px 28px;
-  font-size: 16px;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
-  display: none;
-  z-index: 10;
-  animation: floatIn 1s ease forwards;
-}
+    /* Corazones */
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      z-index: 1;
+      opacity: 0.9;
+    }
 
-@keyframes floatIn {
-  from { opacity: 0; transform: translate(-50%, 30px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
-}
-
-.ribbon {
-  position: fixed;
-  top: -40px;
-  font-size: 26px;
-  animation: fall linear infinite;
-  opacity: 0.9;
-}
-
-@keyframes fall {
-  from { transform: translateY(-50px) rotate(0deg); }
-  to { transform: translateY(110vh) rotate(360deg); }
-}
-</style>
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
   <div class="card">
     <h1>Feliz 14 mi niña 💖</h1>
 
@@ -116,42 +106,47 @@ Feliz 14 mi bebé, el primero de muchos que vamos a pasar, y a pesar de la dista
 
 Firma?
 
-Tu niño <3
+<span class="firma">Tu niño &lt;3</span>
     </p>
+
+    <button class="music-btn" id="playBtn">💖 Toca para escuchar la canción</button>
+
+    <audio id="music">
+      <source src="sweet.mp3" type="audio/mpeg">
+    </audio>
   </div>
-</div>
 
-<button class="play-btn" onclick="playMusic()">💖 Toca para escuchar la canción</button>
+  <script>
+    // Animación entrada
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
 
-<audio id="music" src="sweet.mp3" loop></audio>
+    // Música (funciona en celular)
+    const btn = document.getElementById("playBtn");
+    const music = document.getElementById("music");
 
-<script>
-const music = document.getElementById("music");
-const button = document.querySelector(".play-btn");
+    btn.addEventListener("click", () => {
+      music.play();
+      btn.style.display = "none";
+    });
 
-setTimeout(() => {
-  button.style.display = "block";
-}, 2500);
+    // Corazones flotando
+    const hearts = ["💝","🎀","💗","💞"];
 
-function playMusic() {
-  music.play();
-  button.innerText = "🎵 Reproduciendo…";
-}
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
 
-function createRibbon() {
-  const ribbon = document.createElement("div");
-  ribbon.classList.add("ribbon");
-  ribbon.innerHTML = "🎀";
-  ribbon.style.left = Math.random() * 100 + "vw";
-  ribbon.style.animationDuration = (3 + Math.random() * 3) + "s";
-  document.body.appendChild(ribbon);
-  setTimeout(() => ribbon.remove(), 7000);
-}
-
-setInterval(createRibbon, 250);
-</script>
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }, 300);
+  </script>
 
 </body>
 </html>
-
-
