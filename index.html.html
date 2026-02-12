@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 14 💖</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #ff9a9e, #fad0c4);
+  overflow-x: hidden;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 40px 20px 140px;
+}
+
+.card {
+  background: rgba(255,255,255,0.88);
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  animation: slideUp 1.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: 25px;
+  color: #b30059;
+  animation: popIn 1.4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4a0033;
+  white-space: pre-line;
+}
+
+.play-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4d88;
+  color: #fff;
+  border: none;
+  padding: 16px 28px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 10;
+  animation: floatIn 1s ease forwards;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translate(-50%, 30px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.ribbon {
+  position: fixed;
+  top: -40px;
+  font-size: 26px;
+  animation: fall linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  from { transform: translateY(-50px) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+    <h1>Feliz 14 mi niña 💖</h1>
+
+    <p>
+ola mi niña solo quería que supieras lo mucho que te amo mi vida y que eres alguien muy especial en mi vida, alguien en el que pienso desde que me levanto, hasta que me acuesto. Realmente no se que me hiciste mi amor pero me gusta, me gusta pensar en ti, en pensar que haces o pensar en lo mucho que te amo, no sabia que necesitaba de ti hasta que llegaste mi niña, creo que me estoy yendo de tema pero esta quería que fuese algo distinta, quizás más yo? o no se mi amor, pero lo que si se amor es que te amo mucho y que ojala pasemos un lindo 14 mi monita, el primero de muchos que vamos a pasar juntos y ojalá el próximo lo podamos pasar estando juntos haciendo muchas cosas juntos, siendo solo tu y yo, siendo felices que creo que es lo que más queremos ambos mi vida. Te amo mucho mi monita, mi cachetoncita anhelo que llegue diciembre solo para poder verte, y ver los ojos del amor de mi vida, los ojos que que quiero ver al levantarme todas las mañana.
+
+Pero realmente quiero que estos meses pasen lento y a la vez no mi amor, solo por el hecho de que quiero vivir cada momento junto a ti y que cada momento sea único y recordarlo siempre mi niña :3. Te amo mucho mi niña hermosa, mi cachetona, mi monita. Mi enojona la uníca enojona que quiero tener siempre en mi vida.
+
+Feliz 14 mi bebé, el primero de muchos que vamos a pasar, y a pesar de la distancia mi vida va a ser un gran día tenlo x seguro espero te guste esta carta, intente que fuera un poco diferente. Algún día podré darte cartas echas a mano, y no creo que falte mucho para eso, pero bueño mi vida te amo mucho.
+
+Firma?
+
+Tu niño <3
+    </p>
+  </div>
+</div>
+
+<button class="play-btn" onclick="playMusic()">💖 Toca para escuchar la canción</button>
+
+<audio id="music" src="sweet.mp3" loop></audio>
+
+<script>
+const music = document.getElementById("music");
+const button = document.querySelector(".play-btn");
+
+setTimeout(() => {
+  button.style.display = "block";
+}, 2500);
+
+function playMusic() {
+  music.play();
+  button.innerText = "🎵 Reproduciendo…";
+}
+
+function createRibbon() {
+  const ribbon = document.createElement("div");
+  ribbon.classList.add("ribbon");
+  ribbon.innerHTML = "🎀";
+  ribbon.style.left = Math.random() * 100 + "vw";
+  ribbon.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(ribbon);
+  setTimeout(() => ribbon.remove(), 7000);
+}
+
+setInterval(createRibbon, 400);
+</script>
+
+</body>
+</html>
